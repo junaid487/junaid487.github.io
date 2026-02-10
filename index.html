@@ -35,7 +35,11 @@
 
         /* --- HYBRID BLOOM CARDS --- */
         .bloom-card {
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            /* Hover transitions: Fast and snappy */
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), 
+                        background 0.3s ease, 
+                        box-shadow 0.3s ease, 
+                        border-color 0.3s ease;
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -43,9 +47,11 @@
             overflow: hidden;
         }
 
-        .bloom-card:hover {
-            transform: translateY(-12px);
+        /* Hover effect (Snappy) */
+        .bloom-card.active:hover {
+            transform: translateY(-12px) scale(1.02) !important;
             background: rgba(255, 255, 255, 0.05);
+            z-index: 20;
         }
 
         /* Shimmer Effect */
@@ -63,22 +69,10 @@
         }
 
         /* Specific Color Blooms */
-        .bloom-blue:hover {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(59, 130, 246, 0.2), inset 0 0 60px rgba(59, 130, 246, 0.1);
-            border-color: rgba(59, 130, 246, 0.4);
-        }
-        .bloom-purple:hover {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(168, 85, 247, 0.2), inset 0 0 60px rgba(168, 85, 247, 0.1);
-            border-color: rgba(168, 85, 247, 0.4);
-        }
-        .bloom-emerald:hover {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(16, 185, 129, 0.2), inset 0 0 60px rgba(16, 185, 129, 0.1);
-            border-color: rgba(16, 185, 129, 0.4);
-        }
-        .bloom-orange:hover {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(249, 115, 22, 0.2), inset 0 0 60px rgba(249, 115, 22, 0.1);
-            border-color: rgba(249, 115, 22, 0.4);
-        }
+        .bloom-blue:hover { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(59, 130, 246, 0.2); border-color: rgba(59, 130, 246, 0.4); }
+        .bloom-purple:hover { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(168, 85, 247, 0.2); border-color: rgba(168, 85, 247, 0.4); }
+        .bloom-emerald:hover { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); }
+        .bloom-orange:hover { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(249, 115, 22, 0.2); border-color: rgba(249, 115, 22, 0.4); }
 
         .gradient-text { 
             background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%); 
@@ -88,10 +82,26 @@
 
         .code-font { font-family: 'Fira Code', monospace; }
         
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+        /* --- REVEAL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            filter: blur(10px);
+            /* Entry transition: Slower and elegant */
+            transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1), 
+                        opacity 1s ease, 
+                        filter 1s ease;
+        }
+
+        .reveal-left { transform: translateX(-80px); }
+        .reveal-right { transform: translateX(80px); }
+        .reveal-bottom { transform: translateY(60px); }
+
+        .reveal.active {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate(0, 0);
+        }
+
     </style>
 </head>
 <body class="selection:bg-blue-500/30">
@@ -100,7 +110,7 @@
 
     <header class="fixed w-full top-0 z-50 glass border-b border-white/5">
         <div class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-            <div class="text-2xl font-black tracking-tighter">Junaid<span class="text-yellow-500">.</span><span class="text-blue-500">Alam</span></div>
+            <div class="text-2xl font-black tracking-tighter"><span class="text-blue-500">Junaid</span><span class="text-yellow-500">.</span>Alam</div>
             <nav class="hidden md:flex space-x-10 text-xs uppercase tracking-widest font-bold text-gray-400">
                 <a href="#home" class="hover:text-blue-400 transition">Home</a>
                 <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
@@ -129,14 +139,19 @@
                     <span>System Online: 2026 Ready</span>
                 </div>
                 <h1 class="text-6xl md:text-8xl font-black leading-none mb-8 tracking-tighter">
-                    Turning data<br> into <br><span class="gradient-text">intelligence.</span>
+                    Turning data<br> into <br><span id="typewriter" class="gradient-text"></span><span class="text-blue-500 animate-pulse">|</span>
                 </h1>
                 <p class="text-gray-400 text-xl mb-10 max-w-2xl leading-relaxed">
-                    I'm an aspiring AI/ML Engineer focused on Generative AI, Predictive Modeling, and NLP. Bridging the gap between raw data and agentic solutions.
+                    I'm an aspiring AI/ML Engineer focused on Generative AI, Predictive Modeling, NLP and Data Science. Bridging the gap between raw data and agentic solutions.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all shadow-lg shadow-blue-900/20">Explore Nexus</a>
-                    <a href="#contact" class="px-10 py-4 glass hover:bg-white/10 rounded-full font-bold transition-all">Initiate Contact</a>
+                    <button onclick="alert('The 2026 version of my CV is currently being updated. Check back soon!')" 
+                    class="px-8 py-4 bg-white hover:bg-blue-600 text-black hover:text-white rounded-full font-bold transition-all flex items-center gap-2 group">
+                  <i data-lucide="file-text" class="w-4 h-4 text-black group-hover:text-white transition-colors"></i>
+                  Download CV
+                </button>
+                <a href="#projects" class="px-10 py-4 hover:bg-blue-500 text-white rounded-full font-bold transition-all shadow-lg shadow-blue-900/20">Explore Projects</a>
+                <a href="#contact" class="px-10 py-4 glass hover:bg-blue-600 rounded-full font-bold transition-all">Initiate Contact</a>
                 </div>
             </div>
 
@@ -156,13 +171,10 @@
                         <p class="ml-8 text-gray-400">self.is_ready = <span class="text-orange-400">True</span></p>
 
                         <p class="ml-4 mt-2"><span class="text-blue-400">def</span> <span class="text-yellow-200">execute_vision</span>(self):</p>
-                        <p class="ml-8 text-gray-500 italic"># Turning raw data into intelligence</p>
                         <p class="ml-8"><span class="text-blue-400">return</span> <span class="text-emerald-400">"System Initialized"</span></p>
 
                         <div class="mt-4 pt-4 border-t border-white/5">
-                            <p class="text-gray-500">>>> junaid = Engineer()</p>
-                            <p class="text-gray-500">>>> junaid.execute_vision()</p>
-                            <p class="text-cyan-400 animate-pulse font-bold mt-1">'Neural Nexus Online...'</p>
+                            <p class="text-cyan-400 animate-pulse font-bold mt-1">>>> junaid.execute_vision()</p>
                         </div>
                     </div>
                 </div>
@@ -173,12 +185,12 @@
     <section id="projects" class="py-32 px-8 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20">
-                <h2 class="text-4xl font-bold mb-4 tracking-tight"><span class="text-blue-500">Projects</span></h2>
+                <h2 class="text-4xl font-bold mb-4 tracking-tight"><span class="text-blue-500">Explore</span> Projects</h2>
                 <p class="text-gray-500">A selection of my most impactful data-driven deployments.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
-                <div class="md:col-span-4 bloom-card bloom-blue p-8 rounded-3xl min-h-[400px] flex flex-col justify-end">
+                <div class="md:col-span-4 bloom-card bloom-blue p-8 rounded-3xl min-h-[400px] flex flex-col justify-end reveal reveal-left">
                     <div class="shimmer"></div>
                     <i data-lucide="brain-circuit" class="w-12 h-12 text-blue-500 mb-6 relative z-10"></i>
                     <h3 class="text-3xl font-bold mb-3 relative z-10">Sentiment Analysis Engine</h3>
@@ -189,7 +201,7 @@
                     </div>
                 </div>
 
-                <div class="md:col-span-2 bloom-card bloom-blue bg-slate-900/80 border-cyan-500/20 p-8 rounded-3xl flex flex-col justify-center text-center">
+                <div class="md:col-span-2 bloom-card bloom-blue bg-slate-900/80 border-cyan-500/20 p-8 rounded-3xl flex flex-col justify-center text-center reveal reveal-right">
                     <div class="shimmer"></div>
                     <div class="text-6xl font-black mb-2 text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.4)]">10+</div>
                     <p class="text-gray-400 font-medium">Projects Completed</p>
@@ -199,7 +211,7 @@
                     </div>
                 </div>
 
-                <div class="md:col-span-3 bloom-card bloom-purple p-8 rounded-3xl min-h-[300px]">
+                <div class="md:col-span-3 bloom-card bloom-purple p-8 rounded-3xl min-h-[300px] reveal reveal-left">
                     <div class="shimmer"></div>
                     <i data-lucide="home" class="w-8 h-8 text-purple-500 mb-6 relative z-10"></i>
                     <h3 class="text-2xl font-bold mb-2 relative z-10">Bengaluru Predictor</h3>
@@ -207,7 +219,7 @@
                     <span class="relative z-10 px-3 py-1 bg-purple-500/10 text-purple-400 text-[10px] font-bold rounded-md uppercase">Regression</span>
                 </div>
 
-                <div class="md:col-span-3 bloom-card bloom-emerald p-8 rounded-3xl min-h-[300px]">
+                <div class="md:col-span-3 bloom-card bloom-emerald p-8 rounded-3xl min-h-[300px] reveal reveal-right">
                     <div class="shimmer"></div>
                     <i data-lucide="users" class="w-8 h-8 text-emerald-500 mb-6 relative z-10"></i>
                     <h3 class="text-2xl font-bold mb-2 relative z-10">Churn Guard AI</h3>
@@ -220,30 +232,30 @@
 
     <section id="skills" class="py-24 relative z-10">
         <div class="max-w-7xl mx-auto px-6 text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4 tracking-tight">Technical <span class="text-blue-500">Stack</span></h2>
+            <h2 class="text-3xl font-bold mb-4 tracking-tight"><span class="text-blue-500">Technical </span>Stack</h2>
             <p class="text-gray-500">The tools I use to build and deploy intelligent systems.</p>
         </div>
         
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bloom-card bloom-blue p-8 text-center group rounded-2xl">
+            <div class="bloom-card bloom-blue p-8 text-center group rounded-2xl reveal reveal-bottom">
                 <div class="shimmer"></div>
                 <i data-lucide="code-2" class="w-10 h-10 mx-auto mb-4 text-blue-500 transition-transform group-hover:scale-110 duration-300"></i>
                 <h3 class="font-bold text-lg">Python</h3>
                 <p class="text-xs text-gray-400 mt-2 font-mono">Numpy, Pandas, Sklearn</p>
             </div>
-            <div class="bloom-card bloom-purple p-8 text-center group rounded-2xl">
+            <div class="bloom-card bloom-purple p-8 text-center group rounded-2xl reveal reveal-bottom">
                 <div class="shimmer"></div>
                 <i data-lucide="brain-circuit" class="w-10 h-10 mx-auto mb-4 text-purple-500 transition-transform group-hover:scale-110 duration-300"></i>
                 <h3 class="font-bold text-lg">Gen AI</h3>
                 <p class="text-xs text-gray-400 mt-2 font-mono">LangChain, OpenAI, RAG</p>
             </div>
-            <div class="bloom-card bloom-emerald p-8 text-center group rounded-2xl">
+            <div class="bloom-card bloom-emerald p-8 text-center group rounded-2xl reveal reveal-bottom">
                 <div class="shimmer"></div>
                 <i data-lucide="database" class="w-10 h-10 mx-auto mb-4 text-emerald-500 transition-transform group-hover:scale-110 duration-300"></i>
                 <h3 class="font-bold text-lg">SQL / Excel</h3>
                 <p class="text-xs text-gray-400 mt-2 font-mono">MySQL, Advanced Analysis</p>
             </div>
-            <div class="bloom-card bloom-orange p-8 text-center group rounded-2xl">
+            <div class="bloom-card bloom-orange p-8 text-center group rounded-2xl reveal reveal-bottom">
                 <div class="shimmer"></div>
                 <i data-lucide="bar-chart-big" class="w-10 h-10 mx-auto mb-4 text-orange-500 transition-transform group-hover:scale-110 duration-300"></i>
                 <h3 class="font-bold text-lg">Visualization</h3>
@@ -252,21 +264,87 @@
         </div>
     </section>
 
+
+    <section id="certificates" class="py-24 px-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal reveal-left">
+                <h2 class="text-4xl font-bold mb-4 tracking-tight">
+                    <span class="text-blue-500">Professional Certifications</span> (IBM)
+                </h2>
+                <p class="text-gray-500">Verified credentials. Click any certificate to view official documentation.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="https://www.credly.com/badges/66099d7a-41ad-4d20-9a69-7740b799b961/public_url" target="_blank" class="bloom-card bloom-blue p-4 rounded-3xl reveal reveal-bottom block group">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/IBM DS.png" alt="IBM Certificate 1" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold px-2 group-hover:text-blue-400 transition">Data Science Professional</h3>
+                </a>
+
+                <a href="https://www.credly.com/badges/cadfbd30-21b8-4dfa-80bc-5916eed6de46/linked_in_profile" target="_blank" class="bloom-card bloom-blue p-4 rounded-3xl reveal reveal-bottom block group" style="transition-delay: 100ms;">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/IBM python.png" alt="IBM Certificate 2" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold px-2 group-hover:text-blue-400 transition">Python</h3>
+                </a>
+
+                <a href="https://www.credly.com/badges/15f8ef58-53cb-487c-a5da-e5507ff2a3b3/linked_in_profile" target="_blank" class="bloom-card bloom-blue p-4 rounded-3xl reveal reveal-bottom block group" style="transition-delay: 200ms;">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/IBM ML.png" alt="IBM Certificate 3" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold px-2 group-hover:text-blue-400 transition">Machine Learning</h3>
+                </a>
+
+                <a href="https://www.credly.com/badges/e1e6f74c-5775-4cd6-913e-a971ffbd36d6/linked_in_profile" target="_blank" class="bloom-card bloom-blue p-4 rounded-3xl reveal reveal-bottom block group" style="transition-delay: 300ms;">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/IBM Data analysis.png" alt="IBM Certificate 4" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold px-2 group-hover:text-blue-400 transition">Data Analysis with Python</h3>
+                </a>
+
+                <a href="https://www.credly.com/badges/f61e918f-fc69-44ac-a297-6ae935c89589/linked_in_profile" target="_blank" class="bloom-card bloom-blue p-4 rounded-3xl reveal reveal-bottom block group" style="transition-delay: 400ms;">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/IBM Data viz.png" alt="IBM Certificate 5" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold px-2 group-hover:text-blue-400 transition">Data Visualization</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
     <section id="contact" class="py-32 px-8">
-        <div class="max-w-4xl mx-auto glass p-12 rounded-[40px] border border-blue-500/20 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto glass p-12 rounded-[40px] border border-blue-500/20 relative overflow-hidden reveal reveal-bottom">
             <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 blur-[100px]"></div>
-            
             <div class="relative z-10 text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">Ready to Build?</h2>
-                <p class="text-gray-400 mb-6">Available for innovative AI/ML roles in 2026.</p>
-                
+                <h2 class="text-4xl font-bold mb-4"><span class="text-blue-400">Ready</span> to Build?</h2>
                 <div class="inline-flex items-center space-x-3 px-4 py-2 glass rounded-full border border-blue-500/30 group cursor-pointer hover:bg-blue-500/10 transition" onclick="copyEmail()">
                     <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
                     <span id="emailText" class="text-sm font-mono text-blue-100">junaidalam542@gmail.com</span>
                     <i data-lucide="copy" class="w-3 h-3 text-gray-500 group-hover:text-white transition"></i>
                 </div>
             </div>
-
             <form class="space-y-6 relative z-10" action="mailto:junaidalam542@gmail.com" method="post" enctype="text/plain">
                 <div class="grid md:grid-cols-2 gap-6">
                     <input type="text" name="name" placeholder="Identity" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-blue-500 outline-none transition">
@@ -274,7 +352,7 @@
                 </div>
                 <textarea name="message" rows="4" placeholder="Briefing details..." class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-blue-500 outline-none transition"></textarea>
                 <button type="submit" class="w-full py-5 bg-blue-300 text-black hover:bg-blue-500 hover:text-white rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-blue-500/10">
-                    Transmit Intelligence
+                    Send
                 </button>
             </form>
         </div>
@@ -289,10 +367,8 @@
     </footer>
 
     <script>
-        // 1. Initialize the Icons (This is the part that was missing!)
         lucide.createIcons();
 
-        // 2. Spotlight Effect Logic
         const spotlight = document.getElementById('spotlight');
         window.addEventListener('mousemove', e => {
             if (spotlight) {
@@ -301,22 +377,93 @@
             }
         });
 
-        // 3. Email Copy Logic
         function copyEmail() {
             const email = "junaidalam542@gmail.com";
             navigator.clipboard.writeText(email);
-            
             const emailText = document.getElementById('emailText');
             const originalText = emailText.innerText;
-            
             emailText.innerText = "Copied to Clipboard!";
             emailText.classList.add('text-emerald-400');
-            
             setTimeout(() => {
                 emailText.innerText = originalText;
                 emailText.classList.remove('text-emerald-400');
             }, 2000);
         }
+
+        const revealElements = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        el.classList.add('active');
+                        
+                        // KEY FIX: Remove transition-delay after the entry animation is done
+                        // This makes the hover effect (and returning from hover) instant.
+                        const delay = parseFloat(getComputedStyle(el).transitionDelay) * 1000;
+                        setTimeout(() => {
+                            el.style.transitionDelay = '0ms';
+                        }, delay + 1000); // 1000ms matches the reveal transition duration
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply staggered delays for skills
+            const skillCards = document.querySelectorAll('#skills .bloom-card');
+            skillCards.forEach((card, i) => {
+                card.style.transitionDelay = `${i * 150}ms`;
+            });
+
+            // Apply staggered delays for project cards
+            const projectCards = document.querySelectorAll('#projects .bloom-card');
+            projectCards.forEach((card, i) => {
+                card.style.transitionDelay = `${i * 100}ms`;
+            });
+
+            revealElements();
+        });
+
+        // Enhanced Typewriter Effect for Multiple Words
+        const textElement = document.getElementById('typewriter');
+        const words = ["intelligence.", "solutions.", "predictions.", "innovation."];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 150;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                textElement.innerText = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 80; // Faster backspacing
+            } else {
+                textElement.innerText = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 150; // Standard typing speed
+            }
+
+            // Logic for switching states
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Stay on the full word for 2 seconds
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length; // Move to next word
+                typeSpeed = 500; // Short pause before starting next word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(type, 1000);
+        });
+
     </script>
 </body>
 </html>
