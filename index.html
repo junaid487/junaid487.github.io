@@ -375,10 +375,11 @@
                 </div>
             </div>
             <form
-  class="space-y-6 relative z-10"
-  action="https://formspree.io/f/mwvnbrnd"
-  method="POST"
->
+  id="contactForm"
+  class="space-y-6 relative z-10" >
+  <p id="formStatus"
+   class="mt-4 text-sm font-mono text-emerald-400 hidden">Message delivered successfully</p>
+
   <div class="grid md:grid-cols-2 gap-6">
     <input
       type="text"
@@ -416,12 +417,29 @@
     </section>
 
     <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.2em]">
-        <div class="flex justify-center space-x-8 mb-8">
-            <a href="https://www.linkedin.com/in/junaid-alam-81aba93a8/" target="_blank" class="hover:text-blue-500 transition">LinkedIn</a>
-            <a href="https://github.com/junaid487" target="_blank" class="hover:text-blue-500 transition">GitHub</a>
-        </div>
-        <p>&copy; 2026 Junaid Alam. Designed for the AI era.</p>
-    </footer>
+  <div class="flex justify-center gap-8 mb-8">
+    
+    <a href="https://www.linkedin.com/in/junaid-alam-81aba93a8/"
+       target="_blank"
+       aria-label="LinkedIn"
+       class="p-3 rounded-full hover:bg-white/10 transition group">
+      <i data-lucide="linkedin"
+         class="w-5 h-5 text-gray-500 group-hover:text-blue-500 transition"></i>
+    </a>
+
+    <a href="https://github.com/junaid487"
+       target="_blank"
+       aria-label="GitHub"
+       class="p-3 rounded-full hover:bg-white/10 transition group">
+      <i data-lucide="github"
+         class="w-5 h-5 text-gray-500 group-hover:text-white transition"></i>
+    </a>
+
+  </div>
+
+  <p>&copy; 2026 Junaid Alam. Designed for the AI era.</p>
+</footer>
+
 
     <script>
         lucide.createIcons();
@@ -524,3 +542,40 @@
     </script>
 </body>
 </html>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("formStatus");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    status.classList.add("hidden");
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mwvnbrnd", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json"
+        },
+        body: formData
+      });
+
+      if (response.ok) {
+        form.reset();
+        status.textContent = "✔ Message delivered successfully";
+        status.classList.remove("hidden");
+      } else {
+        status.textContent = "✖ Something went wrong. Try again.";
+        status.classList.remove("hidden");
+        status.classList.replace("text-emerald-400", "text-red-400");
+      }
+    } catch (err) {
+      status.textContent = "✖ Network error. Please retry.";
+      status.classList.remove("hidden");
+      status.classList.replace("text-emerald-400", "text-red-400");
+    }
+  });
+</script>
