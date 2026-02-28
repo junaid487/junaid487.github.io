@@ -159,11 +159,15 @@
                     I'm an aspiring AI/ML Engineer focused on Generative AI, Predictive Modeling, NLP and Data Science. Bridging the gap between raw data and agentic solutions.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <button onclick="alert('The 2026 version of my CV is currently being updated. Check back soon!')" 
-                    class="px-8 py-4 bg-white hover:bg-blue-600 text-black hover:text-white rounded-full font-bold transition-all flex items-center gap-2 group">
-                  <i data-lucide="file-text" class="w-4 h-4 text-black group-hover:text-white transition-colors"></i>
-                  Download CV
-                </button>
+                    <a href="./junaid.pdf"
+                        download
+                        class="px-8 py-4 bg-white hover:bg-blue-600 text-black hover:text-white rounded-full font-bold transition-all flex items-center gap-2 group">
+
+                        <i data-lucide="file-text"
+                            class="w-4 h-4 text-black group-hover:text-white transition-colors"></i>
+
+                        Download CV
+                    </a>
                 <a href="#projects" class="px-10 py-4 hover:bg-blue-500 text-white rounded-full font-bold transition-all shadow-lg shadow-blue-900/20">Explore Projects</a>
                 <a href="#contact" class="px-10 py-4 glass hover:bg-blue-600 rounded-full font-bold transition-all">Initiate Contact</a>
                 </div>
@@ -197,67 +201,133 @@
     </section>
 
     <section id="projects" class="py-32 px-8 relative z-10">
-    <div class="max-w-7xl mx-auto">
-        <div class="mb-20">
-            <h2 class="text-4xl font-bold mb-4 tracking-tight"><span class="text-blue-500">Explore</span> Projects</h2>
-            <p class="text-gray-500">A selection of my most impactful data-driven deployments.</p>
-        </div>
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20">
+            <h2 class="text-4xl font-bold mb-4 tracking-tight">
+                <span class="text-blue-500">Explore</span> Projects
+            </h2>
+            <p class="text-gray-500">
+                A selection of my most impactful data-driven deployments.
+            </p>
+            </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
-            
-            <a href="https://junaidexp.streamlit.app" target="_blank" class="md:col-span-4 block no-underline group">
-                <div class="bloom-card bloom-blue p-8 rounded-3xl min-h-[400px] flex flex-col justify-end reveal reveal-left relative overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:brightness-110 h-full">
-                    <div class="shimmer"></div>
-                    <i data-lucide="bar-chart-3" class="w-12 h-12 text-blue-500 mb-6 relative z-10"></i>
-                    <h3 class="text-3xl font-bold mb-3 relative z-10 text-white">Expense Tracker</h3>
-                    <p class="text-gray-400 max-w-lg mb-6 relative z-10">
-                        A personal expense tracker that combines a 
-                        <span class="text-blue-400 font-semibold">Serverless Google Sheets</span> 
-                        backend with interactive 
-                        <span class="text-cyan-400 font-semibold">Plotly</span> 
-                        analytics, enabling users to <b>filter, analyze, and export</b> spending insights through a polished 
-                        <span class="text-emerald-400 font-semibold">Streamlit</span> 
-                        UI.
-                    </p>
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
 
+            <!-- TELECOM CHURN PREDICTION (HERO) -->
+            <a href="https://github.com/junaid487/Telecom_customer_churn"
+                target="_blank" rel="noopener noreferrer"
+                class="md:col-span-4 block no-underline group">
+                <div class="bloom-card bloom-emerald p-8 rounded-3xl min-h-[400px]
+                            flex flex-col justify-end reveal reveal-left relative overflow-hidden
+                            transition-all duration-300 hover:scale-[1.01] hover:brightness-110 h-full">
 
-                    <div class="flex gap-3 relative z-10">
-                        <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-bold rounded-md uppercase">python</span>
-                        <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-bold rounded-md uppercase">Google Cloud API</span>
-                        <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-bold rounded-md uppercase">Streamlit</span>
-                        <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-bold rounded-md uppercase">plotly</span>
-                    </div>
+                <div class="shimmer"></div>
+
+                <i data-lucide="users"
+                    class="w-12 h-12 text-emerald-500 mb-6 relative z-10"></i>
+
+                <h3 class="text-3xl font-bold mb-3 relative z-10 text-white">
+                    Telecom Churn Prediction
+                </h3>
+
+                <p class="text-gray-400 max-w-lg mb-6 relative z-10">
+                    End-to-end customer churn prediction using
+                    <span class="text-emerald-400 font-semibold">Random Forest</span>,
+                    feature engineering, hyperparameter tuning, and class imbalance
+                    handling with <span class="text-emerald-400 font-semibold">SMOTE</span>.
+                </p>
+
+                <div class="flex gap-3 relative z-10">
+                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-md uppercase">python</span>
+                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-md uppercase">classification</span>
+                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-md uppercase">EDA</span>
+                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-md uppercase">sklearn</span>
+                </div>
                 </div>
             </a>
 
-            <div class="md:col-span-2 bloom-card bloom-blue bg-slate-900/80 border-cyan-500/20 p-8 rounded-3xl flex flex-col justify-center text-center reveal reveal-right relative overflow-hidden">
+            <!-- METRICS SUMMARY -->
+            <div class="md:col-span-2 bloom-card bloom-blue bg-slate-900/80 border-cyan-500/20
+                        p-8 rounded-3xl flex flex-col justify-center text-center
+                        reveal reveal-right relative overflow-hidden">
                 <div class="shimmer"></div>
-                <div class="text-6xl font-black mb-2 text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.4)]">10+</div>
+                <div class="text-6xl font-black mb-2 text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+                10+
+                </div>
                 <p class="text-gray-400 font-medium">Projects Completed</p>
                 <div class="mt-8 pt-8 border-t border-white/10">
-                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Top Accuracy</p>
-                    <p class="text-2xl font-bold text-white">87%</p>
+                <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">
+                    Top Accuracy
+                </p>
+                <p class="text-2xl font-bold text-white">87%</p>
                 </div>
             </div>
 
-            <div class="md:col-span-3 bloom-card bloom-purple p-8 rounded-3xl min-h-[300px] reveal reveal-left relative overflow-hidden">
-                <div class="shimmer"></div>
-                <i data-lucide="home" class="w-8 h-8 text-purple-500 mb-6 relative z-10"></i>
-                <h3 class="text-2xl font-bold mb-2 relative z-10">Bengaluru Predictor</h3>
-                <p class="text-gray-400 mb-6 relative z-10">Advanced regression modeling using XGBoost to forecast real estate market shifts.</p>
-                <span class="relative z-10 px-3 py-1 bg-purple-500/10 text-purple-400 text-[10px] font-bold rounded-md uppercase">Regression</span>
-            </div>
+            <!-- EXPENSE TRACKER -->
+            <a href="https://junaidexp.streamlit.app"
+                target="_blank" rel="noopener noreferrer"
+                class="md:col-span-3 block no-underline group">
+                <div class="bloom-card bloom-purple p-8 rounded-3xl min-h-[300px]
+                            reveal reveal-left relative overflow-hidden">
 
-            <div class="md:col-span-3 bloom-card bloom-emerald p-8 rounded-3xl min-h-[300px] reveal reveal-right relative overflow-hidden">
                 <div class="shimmer"></div>
-                <i data-lucide="users" class="w-8 h-8 text-emerald-500 mb-6 relative z-10"></i>
-                <h3 class="text-2xl font-bold mb-2 relative z-10">Churn Guard AI</h3>
-                <p class="text-gray-400 mb-6 relative z-10">Identifying high-risk customer attrition patterns through Logistic Regression and cleaning.</p>
-                <span class="relative z-10 px-3 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-md uppercase">Classification</span>
-            </div>
 
-        </div> </div>
-    </section>
+                <i data-lucide="bar-chart-3"
+                    class="w-12 h-12 text-purple-500 mb-6 relative z-10"></i>
+
+                <h3 class="text-3xl font-bold mb-3 relative z-10 text-white">
+                    Expense Tracker
+                </h3>
+
+                <p class="text-gray-400 max-w-lg mb-6 relative z-10">
+                    Personal expense tracker with a
+                    <span class="text-blue-400 font-semibold">Serverless Google Sheets</span>
+                    backend and interactive <span class="text-cyan-400 font-semibold">Plotly</span> analytics.
+                </p>
+
+                <div class="flex gap-3 relative z-10">
+                    <span class="px-3 py-1 bg-purple-500/10 text-purple-400 text-[10px] font-bold rounded-md uppercase">python</span>
+                    <span class="px-3 py-1 bg-purple-500/10 text-purple-400 text-[10px] font-bold rounded-md uppercase">streamlit</span>
+                    <span class="px-3 py-1 bg-purple-500/10 text-purple-400 text-[10px] font-bold rounded-md uppercase">plotly</span>
+                    <span class="px-3 py-1 bg-purple-500/10 text-purple-400 text-[10px] font-bold rounded-md uppercase">gcp api</span>
+                </div>
+
+                </div>
+            </a>
+
+            <!-- NETFLIX EDA (NEW PROJECT) -->
+            <a href="https://github.com/junaid487/Netflix-Data-Analysis"
+                target="_blank" rel="noopener noreferrer"
+                class="md:col-span-3 block no-underline group">
+                <div class="bloom-card bloom-orange p-8 rounded-3xl min-h-[300px]
+                            reveal reveal-right relative overflow-hidden">
+
+                <div class="shimmer"></div>
+
+                <i data-lucide="film" class="w-12 h-12 text-orange-500 mb-6 relative z-10"></i>
+
+                <h3 class="text-3xl font-bold mb-3 relative z-10 text-white">
+                    Netflix EDA
+                </h3>
+
+                <p class="text-gray-400 max-w-lg mb-6 relative z-10">
+                    Exploratory Data Analysis on Netflix data to uncover trends,
+                    user behaviour, and viewing patterns using Pandas and visualization.
+                </p>
+
+                <div class="flex gap-3 relative z-10">
+                    <span class="px-3 py-1 bg-orange-500/10 text-orange-400 text-[10px] font-bold rounded-md uppercase">python</span>
+                    <span class="px-3 py-1 bg-orange-500/10 text-orange-400 text-[10px] font-bold rounded-md uppercase">EDA</span>
+                    <span class="px-3 py-1 bg-orange-500/10 text-orange-400 text-[10px] font-bold rounded-md uppercase">pandas</span>
+                    <span class="px-3 py-1 bg-orange-500/10 text-orange-400 text-[10px] font-bold rounded-md uppercase">visualization</span>
+                </div>
+
+                </div>
+            </a>
+
+            </div>
+        </div>
+        </section>
 
     <section id="skills" class="py-24 relative z-10">
         <div class="max-w-7xl mx-auto px-6 text-center mb-16">
@@ -288,7 +358,7 @@
                 <div class="shimmer"></div>
                 <i data-lucide="bar-chart-big" class="w-10 h-10 mx-auto mb-4 text-orange-500 transition-transform group-hover:scale-110 duration-300"></i>
                 <h3 class="font-bold text-lg">Visualization</h3>
-                <p class="text-xs text-gray-400 mt-2 font-mono">Tableau, Seaborn</p>
+                <p class="text-xs text-gray-400 mt-2 font-mono">Matplotlib, plotly, Seaborn</p>
             </div>
         </div>
     </section>
