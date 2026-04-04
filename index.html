@@ -335,7 +335,7 @@
             <p class="text-gray-500">The tools I use to build and deploy intelligent systems.</p>
         </div>
         
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 gap-6">
             <div class="bloom-card bloom-blue p-8 text-center group rounded-2xl reveal reveal-bottom">
                 <div class="shimmer"></div>
                 <i data-lucide="code-2" class="w-10 h-10 mx-auto mb-4 text-blue-500 transition-transform group-hover:scale-110 duration-300"></i>
@@ -348,12 +348,12 @@
                 <h3 class="font-bold text-lg">ML</h3>
                 <p class="text-xs text-gray-400 mt-2 font-mono">Supervised, Unsupervised, Model Training & Evaluation,</p>
             </div>
-            <!-- <div class="bloom-card bloom-emerald p-8 text-center group rounded-2xl reveal reveal-bottom">
+            <div class="bloom-card bloom-emerald p-8 text-center group rounded-2xl reveal reveal-bottom">
                 <div class="shimmer"></div>
                 <i data-lucide="database" class="w-10 h-10 mx-auto mb-4 text-emerald-500 transition-transform group-hover:scale-110 duration-300"></i>
                 <h3 class="font-bold text-lg">SQL / Excel</h3>
-                <p class="text-xs text-gray-400 mt-2 font-mono">MySQL, Advanced Analysis</p>
-            </div> -->
+                <p class="text-xs text-gray-400 mt-2 font-mono">MySQL, Excel, Advanced Analysis</p>
+            </div>
             <div class="bloom-card bloom-orange p-8 text-center group rounded-2xl reveal reveal-bottom">
                 <div class="shimmer"></div>
                 <i data-lucide="bar-chart-big" class="w-10 h-10 mx-auto mb-4 text-orange-500 transition-transform group-hover:scale-110 duration-300"></i>
@@ -376,12 +376,13 @@
         <div class="max-w-7xl mx-auto">
             <div class="mb-16 reveal reveal-left">
                 <h2 class="text-4xl font-bold mb-4 tracking-tight">
-                    <span class="text-blue-500">Professional Certifications</span> (IBM)
+                    <span class="text-blue-500">Professional Certifications</span>
                 </h2>
                 <p class="text-gray-500">Verified credentials. Click any certificate to view official documentation.</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="mainCertsGrid">
+                <!-- Original 5 certificates - UNCHANGED -->
                 <a href="https://www.credly.com/badges/66099d7a-41ad-4d20-9a69-7740b799b961/public_url" target="_blank" class="bloom-card bloom-blue p-4 rounded-3xl reveal reveal-bottom block group">
                     <div class="shimmer"></div>
                     <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
@@ -436,6 +437,97 @@
                     </div>
                     <h3 class="text-xl font-bold px-2 group-hover:text-blue-400 transition">Data Visualization</h3>
                 </a>
+
+                <!-- View All Certs Toggle Card - SAME SIZE -->
+                <div id="viewAllCerts" class="bloom-card bloom-emerald p-4 rounded-3xl reveal reveal-bottom block group cursor-pointer relative overflow-hidden" style="transition-delay: 500ms;">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-500/20 to-blue-500/20 border border-emerald-500/30 relative flex items-center justify-center">
+                        <!-- <i data-lucide="award" class="w-16 h-16 text-emerald-400 opacity-80 group-hover:scale-110 transition-all duration-300" id="toggleIcon"></i> -->
+                        <div class="text-6xl font-black mb-2 text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+                            10+<br>
+                            <p class="text-gray-400 font-small">Certificates</p>
+                        </div>
+                            <!-- <p class="text-gray-400 font-medium">Certificates</p> -->
+                        <div class="absolute inset-0 bg-emerald-500/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="chevron-down" class="text-white w-8 h-8" id="chevronIcon"></i>
+                        </div>
+                    </div>
+                    <h3 id="toggleText" class="text-xl font-bold px-2 group-hover:text-emerald-400 transition flex items-center justify-center gap-2">
+                        <span>View All</span>
+                        <i data-lucide="plus" class="w-5 h-5 transition-transform group-hover:rotate-45"></i>
+                    </h3>
+                </div>
+            </div>
+
+            <!-- HIDDEN ADDITIONAL CERTIFICATES - NOW SAME SIZE -->
+            <div id="additionalCerts" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pt-8 mt-8 border-t border-white/5">
+                <!-- Example additional certificates - REPLACE WITH YOUR ACTUAL CERTS -->
+                <a href="https://www.credly.com/badges/12511042-a6e3-4fcd-9916-b9efd186f379/public_url" target="_blank" class="bloom-card bloom-purple p-4 rounded-3xl block group">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/ds l2.png" alt="IBM Certificate 5" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-500/10 to-purple-600/10">
+                            <i data-lucide="award" class="w-20 h-20 text-purple-400 opacity-50"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.credly.com/badges/40e3bfe4-2e00-4637-a17b-6b14f3660cf3/public_url" target="_blank" class="bloom-card bloom-orange p-4 rounded-3xl block group">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/ds with python specialization.png" alt="IBM Certificate 5" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-500/10 to-orange-600/10">
+                            <i data-lucide="award" class="w-20 h-20 text-orange-400 opacity-50"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-orange-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="bloom-card bloom-cyan p-4 rounded-3xl block group">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/Car mileag.png" alt="IBM Certificate 5" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-500/10 to-cyan-600/10">
+                            <i data-lucide="award" class="w-20 h-20 text-cyan-400 opacity-50"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="bloom-card bloom-cyan p-4 rounded-3xl block group">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/flowers and tumors.png" alt="IBM Certificate 5" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-500/10 to-cyan-600/10">
+                            <i data-lucide="award" class="w-20 h-20 text-cyan-400 opacity-50"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="bloom-card bloom-cyan p-4 rounded-3xl block group">
+                    <div class="shimmer"></div>
+                    <div class="aspect-[4/3] mb-6 rounded-2xl overflow-hidden bg-slate-800 border border-white/10 relative">
+                        <img src="IBM certs/KMeans.png" alt="IBM Certificate 5" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-500/10 to-cyan-600/10">
+                            <i data-lucide="award" class="w-20 h-20 text-cyan-400 opacity-50"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i data-lucide="external-link" class="text-white w-8 h-8"></i>
+                        </div>
+                    </div>
+                </a>
+
+
             </div>
         </div>
     </section>
@@ -622,6 +714,50 @@
         <script>
         lucide.createIcons();
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewAllCerts = document.getElementById('viewAllCerts');
+            const additionalCerts = document.getElementById('additionalCerts');
+            const toggleText = document.getElementById('toggleText');
+            
+            let isExpanded = false;
+            
+            viewAllCerts.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                isExpanded = !isExpanded;
+                
+                if (isExpanded) {
+                    // Expand - show additional certs with animation
+                    additionalCerts.classList.remove('hidden');
+                    toggleText.innerHTML = '<span>Show Less</span><i data-lucide="minus" class="w-5 h-5 transition-transform"></i>';
+                    
+                    // Animate in additional certs
+                    const cards = additionalCerts.querySelectorAll('.bloom-card');
+                    cards.forEach((card, i) => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, i * 100);
+                    });
+                } else {
+                    // Collapse
+                    toggleText.innerHTML = '<span>View All</span><i data-lucide="plus" class="w-5 h-5 transition-transform group-hover:rotate-45"></i>';
+                    additionalCerts.classList.add('hidden');
+                }
+                
+                // Refresh Lucide icons
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 50);
+            });
+        });
+        </script>
+
 </body>
 </html>
 
